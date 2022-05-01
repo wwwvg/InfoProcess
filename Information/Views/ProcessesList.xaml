@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Information.Views.ProcessesList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Information.Views"
+             xmlns:local2="clr-namespace:Information.Helpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:prism="http://prismlibrary.com/" xmlns:viewmodels="clr-namespace:Information.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ProcessesListViewModel}"
+             prism:ViewModelLocator.AutoWireViewModel="True" >
+    <UserControl.Resources>
+        <local2:ProcessToStringConverter x:Key="ProcessToStringConverter"></local2:ProcessToStringConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Header="Процессы" Margin="10,10,0,10" FontSize="16">
+            <ListBox ItemsSource="{Binding Processes, Converter={StaticResource ProcessToStringConverter}}" 
+                     SelectedItem="{Binding Path=SelectedProcess, Mode=TwoWay}"/></GroupBox>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <GroupBox Grid.Column="2" Header="{Binding Path=SelectedProcess}" Margin="0,10,10,10" FontSize="16"></GroupBox>
+    </Grid>
+    
+</UserControl>
