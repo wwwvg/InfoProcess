@@ -12,9 +12,9 @@ namespace InfoProcess
         {
             return Container.Resolve<MainWindow>(); 
         }
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) 
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)  // регистрируем модули
         {
-            moduleCatalog.AddModule<InformationModule>(); // регистрируем модуль
+            moduleCatalog.AddModule<InformationModule>(); 
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {

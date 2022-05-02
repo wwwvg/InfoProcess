@@ -19,11 +19,18 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Header="Процессы" Margin="10,10,0,10" FontSize="16">
-            <ListBox ItemsSource="{Binding Processes, Converter={StaticResource ProcessToStringConverter}}" 
-                     SelectedItem="{Binding Path=SelectedProcess, Mode=TwoWay}"/></GroupBox>
+        <ListView ItemsSource="{Binding ProcessesNameID}" Grid.Column="0" Margin="5" 
+                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Процесс" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <GroupBox Grid.Column="2" Header="{Binding Path=SelectedProcess}" Margin="0,10,10,10" FontSize="16"></GroupBox>
+        <TextBlock Grid.Column="2" Text="{Binding SelectedIndex}"></TextBlock>
+
     </Grid>
     
 </UserControl>

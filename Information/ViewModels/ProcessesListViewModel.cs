@@ -1,10 +1,14 @@
-﻿using Prism.Mvvm;
+﻿using Information.Helpers;
+using Information.Models;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
@@ -12,31 +16,30 @@ namespace Information.ViewModels
 {
     internal class ProcessesListViewModel: BindableBase
     {
-        private ObservableCollection<Process> _processes = new ObservableCollection<Process>();
-        public ObservableCollection<Process> Processes
+        private ObservableCollection<ProcessNameID> _processesNameID = new();   // список процессов
+
+        public ObservableCollection<ProcessNameID> ProcessesNameID  
         {
-            get { return _processes; }
-            set { SetProperty(ref _processes, value); }
+            get { return _processesNameID; }
+            set { SetProperty(ref _processesNameID, value); }
         }
 
-
-
-        private string _selectedProcess;
-        public string SelectedProcess
+        private int _selectedIndex;                                             // выделенный элемент
+        public int SelectedIndex
         {
-            get { return _selectedProcess; }
-            set { SetProperty(ref _selectedProcess, value); }
+            get { return _selectedIndex; }
+            set { SetProperty(ref _selectedIndex, value); }
         }
 
-        public ProcessesListViewModel()
+        public ProcessesListViewModel()                                         // конструктор
         {
-            //TimerStart();
-            var processes = Process.GetProcesses();
-            foreach (var process in processes)
-                Processes.Add(process);
+            foreach (var item in Process.GetProcesses())
+                _processesNameID.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
+
+            TimerStart();
         }
 
-        private DispatcherTimer _timer = null;
+        private DispatcherTimer _timer = null;                                  //таймер
 
         private void TimerStart()
         {
@@ -45,21 +48,15 @@ namespace Information.ViewModels
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             _timer.Start();
         }
-
-        private void TimerTick(object sender, EventArgs e)
-        {/*
-            int id = SelectedProcess.Key;
-            //Processes.ex
-            Processes.Clear();
-            var processes = Process.GetProcesses();
-            foreach (var process in processes)
-                Processes.Add(new KeyValuePair<int, string>(process.Id, process.ProcessName));
-            foreach(var process in Processes)
+        int temp;
+        private void TimerTick(object sender, EventArgs e)                      //обработчик таймера
+        {
+            List<ProcessNameID> processNameIDs = new();
+            foreach (var item in Process.GetProcesses().ToList())
             {
-                if (process.Key == id)
-                    SelectedProcess = process;
+                processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
             }
-            */
+            UpdateProcessesList.Update(_processesNameID, processNameIDs);
         }
     }
 }
