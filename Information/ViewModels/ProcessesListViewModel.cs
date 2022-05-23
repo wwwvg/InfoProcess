@@ -17,7 +17,6 @@ namespace Information.ViewModels
     internal class ProcessesListViewModel: BindableBase
     {
         private ObservableCollection<ProcessNameID> _processesNameID = new();   // список процессов
-
         public ObservableCollection<ProcessNameID> ProcessesNameID  
         {
             get { return _processesNameID; }
@@ -44,19 +43,17 @@ namespace Information.ViewModels
         private void TimerStart()
         {
             _timer = new DispatcherTimer();  // если надо, то в скобках указываем приоритет, например DispatcherPriority.Render
-            _timer.Tick += new EventHandler(TimerTick);
+            _timer.Tick += new EventHandler((sender, e) => 
+            {
+                List<ProcessNameID> processNameIDs = new();
+                foreach (var item in Process.GetProcesses().ToList())
+                {
+                processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
+                }
+                UpdateProcessesList.Update(_processesNameID, processNameIDs);
+            });
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             _timer.Start();
-        }
-        int temp;
-        private void TimerTick(object sender, EventArgs e)                      //обработчик таймера
-        {
-            List<ProcessNameID> processNameIDs = new();
-            foreach (var item in Process.GetProcesses().ToList())
-            {
-                processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
-            }
-            UpdateProcessesList.Update(_processesNameID, processNameIDs);
         }
     }
 }

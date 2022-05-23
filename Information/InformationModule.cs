@@ -16,6 +16,7 @@ namespace Information
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager.RegisterViewWithRegion("ProcessesListRegion", typeof(ProcessesList));
+            _regionManager.RegisterViewWithRegion("ProcessInfoRegion", typeof(ProcessInfo));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

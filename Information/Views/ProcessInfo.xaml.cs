@@ -2,9 +2,9 @@
 
 namespace Information.Views
 {
-    public partial class ProcessesList : UserControl
+    public partial class ProcessInfo : UserControl
     {
-        public ProcessesList()
+        public ProcessInfo()
         {
             InitializeComponent();
         }

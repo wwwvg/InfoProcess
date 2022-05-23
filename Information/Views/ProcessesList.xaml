@@ -9,16 +9,12 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:prism="http://prismlibrary.com/" xmlns:viewmodels="clr-namespace:Information.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ProcessesListViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True" >
+    
     <UserControl.Resources>
         <local2:ProcessToStringConverter x:Key="ProcessToStringConverter"></local2:ProcessToStringConverter>
     </UserControl.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
         <ListView ItemsSource="{Binding ProcessesNameID}" Grid.Column="0" Margin="5" 
                   SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
             <ListView.View>
@@ -28,9 +24,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <TextBlock Grid.Column="2" Text="{Binding SelectedIndex}"></TextBlock>
-
     </Grid>
     
 </UserControl>
