@@ -45,11 +45,14 @@ namespace Information.ViewModels
             _timer = new DispatcherTimer();  // если надо, то в скобках указываем приоритет, например DispatcherPriority.Render
             _timer.Tick += new EventHandler((sender, e) =>
             {
+                var processNameIDs = Process.GetProcesses().ToList().Select(item => new ProcessNameId { Name = item.ProcessName, Id = item.Id }).ToList();
+                /*
                 List<ProcessNameId> processNameIDs = new();
                 foreach (var item in Process.GetProcesses().ToList())
                 {
                     processNameIDs.Add(new ProcessNameId { Name = item.ProcessName, Id = item.Id });
                 }
+                */
                 UpdateProcessesList.Update(_processesNameId, processNameIDs);
                 var keyValuePair = new KeyValuePair<int, string>(_processesNameId.ElementAt(_selectedIndex).Id, _processesNameId.ElementAt(_selectedIndex).Name);
                 _eventAggregator.GetEvent<ProcessChanged>().Publish(keyValuePair);
