@@ -29,19 +29,19 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Process name:" Grid.Column="0" Grid.Row="0"></Label>
-        <Label Content="{Binding ProcessName}" Width ="auto"  Grid.Column="1" Grid.Row="0"></Label>
+        <Label Content="Process name:" Grid.Column="0" Grid.Row="0"/>
+		<Label Content="{Binding ProcessName}" Width ="auto"  Grid.Column="1" Grid.Row="0"/>
 
-        <Label Content="Processor usage (%):" Grid.Column="0" Grid.Row="1"></Label>
-        <Label Content="{Binding ProcessorUsage}" Grid.Column="1" Grid.Row="1" ></Label>
+        <Label Content="Processor usage (%):" Grid.Column="0" Grid.Row="1"/>
+        <Label Content="{Binding ProcessorUsage}" Grid.Column="1" Grid.Row="1" />
 
-        <Label Content="Working set (bytes):" Grid.Column="0" Grid.Row="2"></Label>
-        <Label Content="{Binding WorkingSet64}" Grid.Column="1" Grid.Row="2"></Label>
+        <Label Content="Working set (bytes):" Grid.Column="0" Grid.Row="2"/>
+        <Label Content="{Binding WorkingSet64}" Grid.Column="1" Grid.Row="2"/>
 
-        <Label Content="Private memory size (bytes):" Grid.Column="0" Grid.Row="3"></Label>
-        <Label Content="{Binding PrivateMemorySize64}" Grid.Column="1" Grid.Row="3"></Label>
+        <Label Content="Private memory size (bytes):" Grid.Column="0" Grid.Row="3"/>
+        <Label Content="{Binding PrivateMemorySize64}" Grid.Column="1" Grid.Row="3"/>
 
-        <Label Content="Handle count:" Grid.Column="0" Grid.Row="4"></Label>
-        <Label Content="{Binding HandleCount}"  Grid.Column="1" Grid.Row="4"></Label>
+        <Label Content="Handle count:" Grid.Column="0" Grid.Row="4"/>
+        <Label Content="{Binding HandleCount}"  Grid.Column="1" Grid.Row="4"/>
     </Grid>
 </UserControl>
