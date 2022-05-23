@@ -7,7 +7,7 @@ using System.Windows.Data;
 
 namespace Information.Helpers
 {
-    internal class ProcessToStringConverter : IValueConverter
+    public class ProcessToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -27,31 +27,21 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Label Content="Process name:" Grid.Column="0" Grid.Row="0"></Label>
-        <TextBox x:Name="ProcessNameTextBox" Grid.Column="1" Grid.Row="0"></TextBox>
+        <Label Content="{Binding ProcessName}" Width ="auto"  Grid.Column="1" Grid.Row="0"></Label>
 
-        <Label Content="Interval (msec):" Grid.Column="0" Grid.Row="2"></Label>
-        <TextBox x:Name="Interval" Grid.Column="1" Grid.Row="2"></TextBox>
+        <Label Content="Processor usage (%):" Grid.Column="0" Grid.Row="1"></Label>
+        <Label Content="{Binding ProcessorUsage}" Grid.Column="1" Grid.Row="1" ></Label>
 
-        <Label Content="Processor usage (%):" Grid.Column="0" Grid.Row="3"></Label>
-        <TextBox x:Name="ProcessorUsage" Grid.Column="1" Grid.Row="3" IsReadOnly="True"></TextBox>
+        <Label Content="Working set (bytes):" Grid.Column="0" Grid.Row="2"></Label>
+        <Label Content="{Binding WorkingSet64}" Grid.Column="1" Grid.Row="2"></Label>
 
-        <Label Content="Working set (bytes):" Grid.Column="0" Grid.Row="4"></Label>
-        <TextBox x:Name="WorkingSet64" Grid.Column="1" Grid.Row="4"></TextBox>
+        <Label Content="Private memory size (bytes):" Grid.Column="0" Grid.Row="3"></Label>
+        <Label Content="{Binding PrivateMemorySize64}" Grid.Column="1" Grid.Row="3"></Label>
 
-        <Label Content="Private memory size (bytes):" Grid.Column="0" Grid.Row="5"></Label>
-        <TextBox x:Name="PrivateMemorySize64" Grid.Column="1" Grid.Row="5"></TextBox>
-
-        <Label Content="Handle count:" Grid.Column="0" Grid.Row="6"></Label>
-        <TextBox x:Name="HandleCount"  Grid.Column="1" Grid.Row="6"></TextBox>
-
-        <Label Content="Number of records:" Grid.Column="0" Grid.Row="7"></Label>
-        <TextBox x:Name="NumberOfRecords" Grid.Column="1" Grid.Row="7"></TextBox>
-
-
+        <Label Content="Handle count:" Grid.Column="0" Grid.Row="4"></Label>
+        <Label Content="{Binding HandleCount}"  Grid.Column="1" Grid.Row="4"></Label>
     </Grid>
 </UserControl>

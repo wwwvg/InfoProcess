@@ -1,16 +1,60 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
+﻿using Prism.Mvvm;
+using Prism.Events;
+using InfoProcess.Core.Events;
+using Information.Services;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Information.ViewModels
 {
     public class ProcessInfoViewModel : BindableBase
     {
-        public ProcessInfoViewModel()
+        public ProcessInfoViewModel(IEventAggregator eventAggregator)
         {
+            eventAggregator.GetEvent<ProcessChanged>().Subscribe(OnProcessChanged);
+        }
 
+        private void OnProcessChanged(KeyValuePair<int, string> keyValuePair)
+        {
+            ProcessName = keyValuePair.Value;
+            ProcessorUsage = InfoService.ProcessorUsage(ProcessName);
+            WorkingSet = InfoService.WorkingSet(keyValuePair.Key);
+            PrivateMemorySize = InfoService.PrivateMemorySize(keyValuePair.Key);
+            HandleCount = InfoService.HandleCount(keyValuePair.Key);
+        }
+
+        private string _processName;
+        public string ProcessName
+        {
+            get { return _processName; }
+            set { SetProperty(ref _processName, value); }
+        }
+
+        private string _processorUsage;
+        public string ProcessorUsage
+        {
+            get { return _processorUsage; }
+            set { SetProperty(ref _processorUsage, value); }
+        }
+
+        private string _workingSet;
+        public string WorkingSet
+        {
+            get { return _workingSet; }
+            set { SetProperty(ref _workingSet, value); }
+        }
+
+        private string _privateMemorySize;
+        public string PrivateMemorySize
+        {
+            get { return _privateMemorySize; }
+            set { SetProperty(ref _privateMemorySize, value); }
+        }
+
+        private string _handleCount;
+        public string HandleCount
+        {
+            get { return _handleCount; }
+            set { SetProperty(ref _handleCount, value); }
         }
     }
 }

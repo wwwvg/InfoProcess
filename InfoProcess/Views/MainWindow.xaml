@@ -13,6 +13,6 @@
         </Grid.ColumnDefinitions>
         <ContentControl prism:RegionManager.RegionName="ProcessesListRegion" Grid.Column="0"/>
         <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <ContentControl prism:RegionManager.RegionName="ProcessInfoRegion" Grid.Column="1"/>
+        <ContentControl prism:RegionManager.RegionName="ProcessInfoRegion" Grid.Column="2"/>
     </Grid>
 </Window>

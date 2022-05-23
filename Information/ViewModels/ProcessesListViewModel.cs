@@ -1,6 +1,7 @@
 ﻿using Information.Helpers;
 using Information.Models;
 using Prism.Mvvm;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,12 +12,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using InfoProcess.Core.Events;
 
 namespace Information.ViewModels
 {
     internal class ProcessesListViewModel: BindableBase
     {
         private ObservableCollection<ProcessNameID> _processesNameID = new();   // список процессов
+        private readonly IEventAggregator _eventAggregator;
         public ObservableCollection<ProcessNameID> ProcessesNameID  
         {
             get { return _processesNameID; }
@@ -27,11 +30,15 @@ namespace Information.ViewModels
         public int SelectedIndex
         {
             get { return _selectedIndex; }
-            set { SetProperty(ref _selectedIndex, value); }
+            set 
+            { 
+                SetProperty(ref _selectedIndex, value);
+            }
         }
 
-        public ProcessesListViewModel()                                         // конструктор
+        public ProcessesListViewModel(IEventAggregator eventAggregator)                                         // конструктор
         {
+            _eventAggregator = eventAggregator;
             foreach (var item in Process.GetProcesses())
                 _processesNameID.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
 
@@ -43,14 +50,16 @@ namespace Information.ViewModels
         private void TimerStart()
         {
             _timer = new DispatcherTimer();  // если надо, то в скобках указываем приоритет, например DispatcherPriority.Render
-            _timer.Tick += new EventHandler((sender, e) => 
+            _timer.Tick += new EventHandler((sender, e) =>
             {
                 List<ProcessNameID> processNameIDs = new();
                 foreach (var item in Process.GetProcesses().ToList())
                 {
-                processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
+                    processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
                 }
                 UpdateProcessesList.Update(_processesNameID, processNameIDs);
+                var keyValuePair = new KeyValuePair<int, string>(_processesNameID.ElementAt(_selectedIndex).ID, _processesNameID.ElementAt(_selectedIndex).Name);
+                _eventAggregator.GetEvent<ProcessChanged>().Publish(keyValuePair);
             });
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             _timer.Start();
