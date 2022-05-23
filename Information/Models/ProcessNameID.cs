@@ -1,9 +1,9 @@
 ﻿namespace Information.Models
 {
-    public class ProcessNameID// : BindableBase
+    public class ProcessNameId
     {
         public string Name { get; set; }
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public override bool Equals(object obj)  // переопределяется, чтобы проверить разность двух множеств (класс UpdateProcessesList)
         {
@@ -12,14 +12,14 @@
                 return false;
             }
 
-            if (obj is ProcessNameID p) 
-                return Name == p.Name && ID == p.ID;
+            if (obj is ProcessNameId p) 
+                return Name == p.Name && Id == p.Id;
             return false;
         }
 
         public override int GetHashCode()
         {
-            return ID;
+            return Id;
         }
     }
 }

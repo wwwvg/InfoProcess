@@ -16,11 +16,11 @@
     </UserControl.Resources>
     
     <Grid>
-        <ListView ItemsSource="{Binding ProcessesNameID}" Grid.Column="0" Margin="5" 
+        <ListView ItemsSource="{Binding ProcessesNameId}" Grid.Column="0" Margin="5" 
                   SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Процесс" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>

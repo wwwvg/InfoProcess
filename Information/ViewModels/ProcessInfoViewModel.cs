@@ -25,36 +25,36 @@ namespace Information.ViewModels
         private string _processName;
         public string ProcessName
         {
-            get { return _processName; }
-            set { SetProperty(ref _processName, value); }
+            get => _processName;
+            set => SetProperty(ref _processName, value);
         }
 
         private string _processorUsage;
         public string ProcessorUsage
         {
-            get { return _processorUsage; }
-            set { SetProperty(ref _processorUsage, value); }
+            get => _processorUsage;
+            set => SetProperty(ref _processorUsage, value);
         }
 
         private string _workingSet;
         public string WorkingSet
         {
-            get { return _workingSet; }
-            set { SetProperty(ref _workingSet, value); }
+            get => _workingSet;
+            set => SetProperty(ref _workingSet, value);
         }
 
         private string _privateMemorySize;
         public string PrivateMemorySize
         {
-            get { return _privateMemorySize; }
-            set { SetProperty(ref _privateMemorySize, value); }
+            get => _privateMemorySize;
+            set => SetProperty(ref _privateMemorySize, value);
         }
 
         private string _handleCount;
         public string HandleCount
         {
-            get { return _handleCount; }
-            set { SetProperty(ref _handleCount, value); }
+            get => _handleCount;
+            set => SetProperty(ref _handleCount, value);
         }
     }
 }

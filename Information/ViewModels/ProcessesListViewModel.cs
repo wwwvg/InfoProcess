@@ -5,12 +5,8 @@ using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 using InfoProcess.Core.Events;
 
@@ -18,29 +14,26 @@ namespace Information.ViewModels
 {
     internal class ProcessesListViewModel: BindableBase
     {
-        private ObservableCollection<ProcessNameID> _processesNameID = new();   // список процессов
+        private ObservableCollection<ProcessNameId> _processesNameId = new();   // список процессов
         private readonly IEventAggregator _eventAggregator;
-        public ObservableCollection<ProcessNameID> ProcessesNameID  
+        public ObservableCollection<ProcessNameId> ProcessesNameId  
         {
-            get { return _processesNameID; }
-            set { SetProperty(ref _processesNameID, value); }
+            get => _processesNameId;
+            set => SetProperty(ref _processesNameId, value);
         }
 
         private int _selectedIndex;                                             // выделенный элемент
         public int SelectedIndex
         {
-            get { return _selectedIndex; }
-            set 
-            { 
-                SetProperty(ref _selectedIndex, value);
-            }
+            get => _selectedIndex;
+            set => SetProperty(ref _selectedIndex, value);
         }
 
         public ProcessesListViewModel(IEventAggregator eventAggregator)                                         // конструктор
         {
             _eventAggregator = eventAggregator;
             foreach (var item in Process.GetProcesses())
-                _processesNameID.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
+                _processesNameId.Add(new ProcessNameId { Name = item.ProcessName, Id = item.Id });
 
             TimerStart();
         }
@@ -52,13 +45,13 @@ namespace Information.ViewModels
             _timer = new DispatcherTimer();  // если надо, то в скобках указываем приоритет, например DispatcherPriority.Render
             _timer.Tick += new EventHandler((sender, e) =>
             {
-                List<ProcessNameID> processNameIDs = new();
+                List<ProcessNameId> processNameIDs = new();
                 foreach (var item in Process.GetProcesses().ToList())
                 {
-                    processNameIDs.Add(new ProcessNameID { Name = item.ProcessName, ID = item.Id });
+                    processNameIDs.Add(new ProcessNameId { Name = item.ProcessName, Id = item.Id });
                 }
-                UpdateProcessesList.Update(_processesNameID, processNameIDs);
-                var keyValuePair = new KeyValuePair<int, string>(_processesNameID.ElementAt(_selectedIndex).ID, _processesNameID.ElementAt(_selectedIndex).Name);
+                UpdateProcessesList.Update(_processesNameId, processNameIDs);
+                var keyValuePair = new KeyValuePair<int, string>(_processesNameId.ElementAt(_selectedIndex).Id, _processesNameId.ElementAt(_selectedIndex).Name);
                 _eventAggregator.GetEvent<ProcessChanged>().Publish(keyValuePair);
             });
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);

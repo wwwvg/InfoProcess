@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 
 namespace Information.Services
 {
@@ -17,7 +18,7 @@ namespace Information.Services
         public static string ProcessorUsage(string processName)
         {
             var pc = new PerformanceCounter("Process", "% Processor Time", processName, true);
-            return pc.NextValue().ToString();
+            return pc.NextValue().ToString(CultureInfo.InvariantCulture);
         }
 
         public static string WorkingSet(int id)
