@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 using Prism.Events;
-using InfoProcess.Core.Events;
+using Information.Events;
 using Information.Services;
 using System.Collections.Generic;
 

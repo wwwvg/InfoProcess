@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
-using InfoProcess.Core.Events;
+using Information.Events;
 
 namespace Information.ViewModels
 {
@@ -57,7 +57,7 @@ namespace Information.ViewModels
                 var keyValuePair = new KeyValuePair<int, string>(_processesNameId.ElementAt(_selectedIndex).Id, _processesNameId.ElementAt(_selectedIndex).Name);
                 _eventAggregator.GetEvent<ProcessChanged>().Publish(keyValuePair);
             });
-            _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 2000);
             _timer.Start();
         }
     }

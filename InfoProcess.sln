@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoProcess", "InfoProcess\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Information", "Information\Information.csproj", "{68D19193-CD7D-407C-A6B5-7A0FD24143FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoProcess.Core", "InfoProcess.Core\InfoProcess.Core.csproj", "{1A031DC3-D499-46B6-9B8C-4ECAF6B4BE36}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{68D19193-CD7D-407C-A6B5-7A0FD24143FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D19193-CD7D-407C-A6B5-7A0FD24143FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D19193-CD7D-407C-A6B5-7A0FD24143FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A031DC3-D499-46B6-9B8C-4ECAF6B4BE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A031DC3-D499-46B6-9B8C-4ECAF6B4BE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A031DC3-D499-46B6-9B8C-4ECAF6B4BE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A031DC3-D499-46B6-9B8C-4ECAF6B4BE36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
